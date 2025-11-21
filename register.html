@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Register - Online Bookstore{% endblock %}
+{% block content %}
+  <div style="max-width:420px;margin:6px auto;">
+    <div class="card">
+      <h2 style="margin-top:0;">Register</h2>
+      <form method="POST">
+        <input name="username" placeholder="Username" required style="width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #ccc;">
+        <input name="email" type="email" placeholder="Email" required style="width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #ccc;">
+        <input name="password" type="password" placeholder="Password" required style="width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #ccc;">
+        <button type="submit" class="btn" style="width:100%;margin-top:10px;background:#ff5722;">Register</button>
+      </form>
+      <p style="margin-top:10px;">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+    </div>
+  </div>
+{% endblock %}

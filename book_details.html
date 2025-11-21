@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ book.title if book else 'Book Not Found' }} - Online Bookstore{% endblock %}
+
+{% block content %}
+<div style="max-width:800px;margin:20px auto;">
+  {% if book %}
+    <div class="card" style="padding:20px;border:1px solid #ddd;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+      <h2>{{ book.title }}</h2>
+      <p class="muted">by {{ book.author }}</p>
+      <p style="margin-top:8px;">{{ book.description }}</p>
+      <p style="margin-top:12px;font-weight:bold;color:#ff5722;">Price: ${{ '%.2f'|format(book.price) }}</p>
+      <div style="margin-top:14px;">
+        <form method="POST" action="{{ url_for('booking', book_id=book._id|string) }}">
+          <button type="submit" style="padding:8px 16px;background:#2a8fbd;color:#fff;border:none;border-radius:4px;cursor:pointer;">
+            Book Now
+          </button>
+          <a href="{{ url_for('home') }}" style="margin-left:10px;color:#ff5722;text-decoration:none;">Back to Home</a>
+        </form>
+      </div>
+    </div>
+  {% else %}
+    <p style="text-align:center;color:#ff5722;font-weight:bold;">Book not found!</p>
+    <a href="{{ url_for('home') }}" style="text-align:center;display:block;margin-top:10px;color:#2a8fbd;">Back to Home</a>
+  {% endif %}
+</div>
+{% endblock %}
